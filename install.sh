@@ -19,7 +19,7 @@ helm init -c
 helm plugin install https://github.com/hypnoglow/helm-s3.git --version $HELM_S3_PLUGIN_VERSION
 
 # install YAML linter
-pip install yamllint
+pip install yamllint yq
 
 # cleanup
 apk del --purge deps
