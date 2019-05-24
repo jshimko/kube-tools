@@ -5,8 +5,8 @@ A lightweight Docker image (based on Alpine) that comes with all the tools you n
 ## Included Tools
 
 Kubernetes tools:
- - kubectl 1.13.3 - <https://kubernetes.io/docs/reference/kubectl/overview/>
- - helm 2.12.3 - <https://github.com/kubernetes/helm>
+ - kubectl 1.14.2 - <https://kubernetes.io/docs/reference/kubectl/overview/>
+ - helm 2.14.0 - <https://github.com/kubernetes/helm>
  - helm-s3 plugin 0.8.0 - <https://github.com/hypnoglow/helm-s3>
 
 CI tools:
