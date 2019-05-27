@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 apk add --update bash ca-certificates git python
 apk add --update -t deps curl make py-pip
 
@@ -18,6 +20,17 @@ helm init -c
 
 # install S3 plugin for Helm
 helm plugin install https://github.com/hypnoglow/helm-s3.git --version $HELM_S3_PLUGIN_VERSION
+
+# aws-iam-authenticator
+# https://github.com/kubernetes-sigs/aws-iam-authenticator
+curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.12.7/2019-03-27/bin/linux/amd64/aws-iam-authenticator
+chmod +x ./aws-iam-authenticator
+mv aws-iam-authenticator /usr/local/bin/aws-iam-authenticator
+aws-iam-authenticator help
+
+# awscli
+pip install awscli
+aws --version
 
 # install YAML tools
 pip install yamllint yq
