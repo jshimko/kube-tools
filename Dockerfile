@@ -1,10 +1,10 @@
-FROM alpine:3.9
+FROM alpine:3.10
 
 # https://aur.archlinux.org/packages/kubectl-bin/
-ENV KUBECTL_VERSION "1.15.0"
+ENV KUBECTL_VERSION "1.15.5"
 
 # https://github.com/kubernetes/helm/releases
-ENV HELM_VERSION "2.14.1"
+ENV HELM_VERSION "3.0.0"
 
 # https://github.com/hypnoglow/helm-s3
 ENV HELM_S3_PLUGIN_VERSION "0.8.0"
