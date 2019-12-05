@@ -15,27 +15,26 @@ jobs:
     working_directory: ~/project
 
     steps:
-      - setup_remote_docker
-      - checkout
-      - run: echo "$DOCKER_PASS" | docker login -u $DOCKER_USER --password-stdin
-      - run: |
-          docker build -t ${DOCKER_REPO}:${CIRCLE_BRANCH} .
-          docker push ${DOCKER_REPO}:${CIRCLE_BRANCH}
+    - setup_remote_docker
+    - checkout
+    - run: echo "$DOCKER_PASS" | docker login -u $DOCKER_USER --password-stdin
+    - run: |
+        docker build -t ${DOCKER_REPO}:${CIRCLE_BRANCH} .
+        docker push ${DOCKER_REPO}:${CIRCLE_BRANCH}
 
-          if [[ "$CIRCLE_TAG" ]]; then
-            docker tag ${DOCKER_REPO}:${CIRCLE_BRANCH} ${DOCKER_REPO}:${CIRCLE_TAG}
-            docker tag ${DOCKER_REPO}:${CIRCLE_BRANCH} ${DOCKER_REPO}:latest
-            docker push ${DOCKER_REPO}:${CIRCLE_TAG}
-            docker push ${DOCKER_REPO}:latest
-          fi
+        if [[ "$CIRCLE_TAG" ]]; then
+          docker tag ${DOCKER_REPO}:${CIRCLE_BRANCH} ${DOCKER_REPO}:${CIRCLE_TAG}
+          docker tag ${DOCKER_REPO}:${CIRCLE_BRANCH} ${DOCKER_REPO}:latest
+          docker push ${DOCKER_REPO}:${CIRCLE_TAG}
+          docker push ${DOCKER_REPO}:latest
+        fi
 
 workflows:
   version: 2
   build_and_push:
     jobs:
-      - build_and_push:
-          context: docker
-          filters:
-            tags:
-              only: /^([0-9]+)\.([0-9]+)\.([0-9]+)/
-
+    - build_and_push:
+        context: docker
+        filters:
+          tags:
+            only: /.*/
