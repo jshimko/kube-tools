@@ -8,7 +8,7 @@
 version: 2
 
 jobs:
-  build_and_push:
+  test:
     docker:
       - image: alpine:latest
 
