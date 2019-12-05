@@ -31,7 +31,7 @@ jobs:
 
 workflows:
   version: 2
-  build_and_push:
+  build_push:
     jobs:
     - build_and_push:
         context: docker
