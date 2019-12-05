@@ -32,7 +32,7 @@ aws eks update-kubeconfig --name my-cluster
 kubectl get pods --all-namespaces
 
 # or list your helm deployments
-helm ls
+helm ls --all-namespaces
 
 # now do stuff for your CI/CD process...
 ```
