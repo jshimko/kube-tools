@@ -23,7 +23,9 @@ jobs:
 
           if [[ "$CIRCLE_TAG" ]]; then
             docker tag ${DOCKER_REPO}:${CIRCLE_BRANCH} ${DOCKER_REPO}:${CIRCLE_TAG}
+            docker tag ${DOCKER_REPO}:${CIRCLE_BRANCH} ${DOCKER_REPO}:latest
             docker push ${DOCKER_REPO}:${CIRCLE_TAG}
+            docker push ${DOCKER_REPO}:latest
           fi
 
 workflows:

@@ -12,6 +12,9 @@ ENV HELM_S3_PLUGIN_VERSION "0.8.0"
 # set some defaults
 ENV AWS_DEFAULT_REGION "us-west-2"
 
+RUN apk update && apk --no-cache upgrade
+RUN apk add --update bash ca-certificates git python
+
 COPY install.sh /opt/install.sh
 RUN /opt/install.sh
 

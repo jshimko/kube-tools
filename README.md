@@ -1,12 +1,11 @@
 # kube-tools-aws
 
-A lightweight Docker image (based on Alpine) that comes with all the tools you need to work with Kubernetes, Helm charts, AWS (awscli), and AWS EKS (eksctl). Intended to be a flexible foundation of tools for CI/CD workflows.
+A lightweight Docker image (based on Alpine) that comes with all the tools you need to work with Kubernetes, Helm charts, AWS (awscli), and AWS EKS. Intended to be a flexible foundation of tools for CI/CD workflows.
 
 ## Included Tools
 
  - kubectl 1.15.5 - https://kubernetes.io/docs/reference/kubectl/overview/
- - helm 3.0.0 - https://github.com/kubernetes/helm
- - helm-s3 plugin 0.8.0 - https://github.com/hypnoglow/helm-s3
+ - helm 3 - https://github.com/kubernetes/helm
  - awscli https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html
  - aws-iam-authenticator https://github.com/kubernetes-sigs/aws-iam-authenticator
  - yamllint - https://github.com/adrienverge/yamllint
