@@ -8,15 +8,15 @@
 version: 2
 
 jobs:
-  test:
-    docker:
-      - image: alpine:latest
+  # test:
+  #   docker:
+  #     - image: alpine:latest
 
-    working_directory: ~/project
+  #   working_directory: ~/project
 
-    steps:
-    - checkout
-    - run: echo "Tests!"
+  #   steps:
+  #   - checkout
+  #   - run: echo "Tests!"
 
 
   build_and_push:
@@ -44,15 +44,15 @@ workflows:
   version: 2
   build_push:
     jobs:
-      - test:
-          filters:
-            tags:
-              only: /.*/
+      # - test:
+      #     filters:
+      #       tags:
+      #         only: /.*/
 
       - build_and_push:
           context: docker
-          requires:
-            - test          
+          # requires:
+          #   - test          
           filters:
             tags:
               only: /.*/
