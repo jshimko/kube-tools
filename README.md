@@ -4,7 +4,7 @@ A lightweight Docker image (based on Alpine) that comes with all the tools you n
 
 ## Included Tools
 
- - kubectl 1.15.5 - https://kubernetes.io/docs/reference/kubectl/overview/
+ - kubectl 1.17.3 - https://kubernetes.io/docs/reference/kubectl/overview/
  - helm 3 - https://github.com/kubernetes/helm
  - awscli https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html
  - aws-iam-authenticator https://github.com/kubernetes-sigs/aws-iam-authenticator
@@ -20,7 +20,7 @@ docker run -it \
   -e AWS_ACCESS_KEY_ID="<AWS key>" \
   -e AWS_SECRET_ACCESS_KEY="<AWS secret>" \
   -e AWS_DEFAULT_REGION="us-west-2" \
-  jshimko/kube-tools-aws:latest
+  coastapp/kube-tools-aws:latest
 
 # the above command drops into a bash shell with
 # all of the tooling for the following commands...
