@@ -5,6 +5,8 @@ set -e
 apk add --update -t deps curl make py-pip openssl
 
 # install kubectl
+# https://aur.archlinux.org/packages/kubectl-bin/
+KUBECTL_VERSION=1.17.3
 curl -L https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl
 chmod +x /usr/local/bin/kubectl
 
