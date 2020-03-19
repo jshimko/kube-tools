@@ -4,8 +4,9 @@ A lightweight Docker image (based on Alpine) that comes with all the tools you n
 
 ## Included Tools
 
- - kubectl 1.17.3 - https://kubernetes.io/docs/reference/kubectl/overview/
- - helm 3 - https://github.com/kubernetes/helm
+ - kubectl - https://kubernetes.io/docs/reference/kubectl/overview/
+ - Helm 3 - https://github.com/kubernetes/helm
+ - Helm S3 plugin - https://github.com/hypnoglow/helm-s3
  - awscli https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html
  - aws-iam-authenticator https://github.com/kubernetes-sigs/aws-iam-authenticator
  - yamllint - https://github.com/adrienverge/yamllint
