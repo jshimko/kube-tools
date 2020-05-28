@@ -16,12 +16,12 @@ A lightweight Docker image (based on Alpine) that comes with all the tools you n
 ## Example Usage
 
 ```sh
-# start up an image to administer an AWS EKS cluster
+# start up an image
 docker run -it \
   -e AWS_ACCESS_KEY_ID="<AWS key>" \
   -e AWS_SECRET_ACCESS_KEY="<AWS secret>" \
-  -e AWS_DEFAULT_REGION="us-west-2" \
-  coastapp/kube-tools-aws:latest
+  -e AWS_DEFAULT_REGION="us-east-1" \
+  jshimko/kube-tools-aws:latest
 
 # the above command drops into a bash shell with
 # all of the tooling for the following commands...

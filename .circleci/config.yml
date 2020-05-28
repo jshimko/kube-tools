@@ -51,7 +51,7 @@ workflows:
       #         only: /.*/
 
       - build_and_push:
-          context: kube-tools
+          context: docker
           # requires:
           #   - test          
           filters:
