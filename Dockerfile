@@ -10,7 +10,7 @@ ENV HELM_S3_PLUGIN_VERSION "0.9.2"
 ENV AWS_DEFAULT_REGION "us-east-1"
 
 RUN apk --no-cache upgrade
-RUN apk add --update bash ca-certificates git python
+RUN apk add --update bash ca-certificates git python3 jq
 
 COPY install.sh /opt/install.sh
 RUN /opt/install.sh
