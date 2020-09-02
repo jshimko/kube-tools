@@ -30,7 +30,7 @@ pip install awscli
 aws --version
 
 # install YAML tools
-pip install yamllint yq
+pip install yamllint yq jq
 
 # cleanup
 apk del --purge deps
