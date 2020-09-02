@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 # https://aur.archlinux.org/packages/kubectl-bin/
-ENV KUBECTL_VERSION "1.18.3"
+ENV KUBECTL_VERSION "1.19.0"
 
 # https://github.com/hypnoglow/helm-s3
 ENV HELM_S3_PLUGIN_VERSION "0.9.2"
