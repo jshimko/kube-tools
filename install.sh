@@ -25,10 +25,6 @@ chmod +x ./aws-iam-authenticator
 mv aws-iam-authenticator /usr/local/bin/aws-iam-authenticator
 aws-iam-authenticator help
 
-# awscli
-pip install awscli
-aws --version
-
 # install YAML tools
 pip install yamllint yq
 
