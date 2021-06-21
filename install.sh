@@ -5,9 +5,9 @@ set -e
 apk add --update py3-pip curl make openssl groff
 
 # install kubectl
-# https://aur.archlinux.org/packages/kubectl-bin/
-curl -L https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl
+curl -L "https://dl.k8s.io/release/$(curl -Ls https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" -o /usr/local/bin/kubectl
 chmod +x /usr/local/bin/kubectl
+kubectl version --client
 
 # install Helm
 # https://helm.sh/docs/intro/install/#from-script
