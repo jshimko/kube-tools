@@ -10,7 +10,7 @@ RUN apk --no-cache upgrade
 RUN apk add --update bash ca-certificates git python3 jq
 
 # https://github.com/sgerrand/alpine-pkg-glibc/releases
-ENV GLIBC_VER=2.34-r0
+ENV GLIBC_VER=2.33-r0
 
 # install glibc compatibility for alpine and aws-cli v2
 # https://github.com/aws/aws-cli/issues/4685#issuecomment-615872019
