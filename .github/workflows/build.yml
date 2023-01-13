@@ -11,7 +11,7 @@ jobs:
 
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@4
+        uses: docker/metadata-action@3
         with:
           images: jshimko/kube-tools
           tags: |
