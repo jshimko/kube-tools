@@ -1,45 +1,42 @@
-FROM alpine:3.14
+FROM debian:11-slim
 
-# https://github.com/hypnoglow/helm-s3
-ENV HELM_S3_PLUGIN_VERSION "0.10.0"
+ENV DEBIAN_FRONTEND=noninteractive
 
-# set some defaults
-ENV AWS_DEFAULT_REGION "us-east-1"
+RUN apt update && \
+  apt upgrade -y && \
+  apt install -y --no-install-recommends curl git gnupg2 python python3-pip vim wget && \
+  echo "deb http://apt.postgresql.org/pub/repos/apt bullseye-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
+  wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
+  apt -y update && apt install -y --no-install-recommends postgresql-client-14 && \
+  rm -rf /var/lib/apt/lists/* && \
+  pip3 install --upgrade pip && \
+  pip3 install awscli yamllint yq
 
-RUN apk --no-cache upgrade
-RUN apk add --update bash ca-certificates git python3 jq
+# kubectl
+RUN curl -LO "https://dl.k8s.io/release/$(curl -Ls https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && \
+  mv kubectl /usr/local/bin/kubectl && \
+  chmod +x /usr/local/bin/kubectl && \
+  kubectl version --client
 
-# https://github.com/sgerrand/alpine-pkg-glibc/releases
-ENV GLIBC_VER=2.33-r0
+# helm
+RUN curl -fsSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
-# install glibc compatibility for alpine and aws-cli v2
-# https://github.com/aws/aws-cli/issues/4685#issuecomment-615872019
-RUN apk --no-cache add \
-        binutils \
-        curl \
-    && curl -sL https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o /etc/apk/keys/sgerrand.rsa.pub \
-    && curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-${GLIBC_VER}.apk \
-    && curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-bin-${GLIBC_VER}.apk \
-    && apk add --no-cache \
-        glibc-${GLIBC_VER}.apk \
-        glibc-bin-${GLIBC_VER}.apk \
-    && curl -sL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip \
-    && unzip awscliv2.zip \
-    && aws/install \
-    && rm -rf \
-        awscliv2.zip \
-        aws \
-        /usr/local/aws-cli/v2/*/dist/aws_completer \
-        /usr/local/aws-cli/v2/*/dist/awscli/data/ac.index \
-        /usr/local/aws-cli/v2/*/dist/awscli/examples \
-    && apk --no-cache del \
-        binutils \
-        curl \
-    && rm glibc-${GLIBC_VER}.apk \
-    && rm glibc-bin-${GLIBC_VER}.apk \
-    && rm -rf /var/cache/apk/*
+# helm S3 plugin
+RUN helm plugin install https://github.com/hypnoglow/helm-s3.git
 
-COPY install.sh /opt/install.sh
-RUN /opt/install.sh
+# aws-iam-authenticator
+# https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
+RUN curl https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v0.5.9/aws-iam-authenticator_0.5.9_linux_amd64 -Lo aws-iam-authenticator && \
+  chmod +x ./aws-iam-authenticator && \
+  mv aws-iam-authenticator /usr/local/bin/aws-iam-authenticator && \
+  aws-iam-authenticator help
+
+# Digital Ocean CLI (doctl)
+RUN DOCTL_VERSION=1.92.0 && \
+  wget https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-amd64.tar.gz && \
+  tar xf ./doctl-${DOCTL_VERSION}-linux-amd64.tar.gz && \
+  mv ./doctl /usr/local/bin && \
+  rm ./doctl-${DOCTL_VERSION}-linux-amd64.tar.gz && \
+  doctl help
 
 CMD bash
