@@ -1,3 +1,5 @@
 .circleci
+.github
 .git
 *.md
+temp
