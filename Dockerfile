@@ -6,6 +6,17 @@ RUN apt update && \
   apt upgrade -y && \
   apt install -y --no-install-recommends \
     curl ca-certificates git gnupg2 python3 pipx vim wget && \
+  # Docker
+  install -m 0755 -d /etc/apt/keyrings && \
+  curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
+  chmod a+r /etc/apt/keyrings/docker.gpg && \
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+    tee /etc/apt/sources.list.d/docker.list > /dev/null && \
+  apt-get update && \
+  apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && \
+  # postgresql-client-16
   install -d /usr/share/postgresql-common/pgdg && \
   curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc && \
   echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt bookworm-pgdg main" \
@@ -13,6 +24,7 @@ RUN apt update && \
   apt update && apt install -y --no-install-recommends postgresql-client-16 && \
   rm -rf /var/lib/apt/lists/*
 
+# misc tools
 RUN pipx install awscli
 RUN pipx install yamllint
 
