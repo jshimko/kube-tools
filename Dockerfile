@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update && \
   apt upgrade -y && \
   apt install -y --no-install-recommends \
-    curl ca-certificates git gnupg2 python3 pipx vim wget && \
+    curl ca-certificates git gnupg2 python3 pipx rclone vim wget && \
   # Docker
   install -m 0755 -d /etc/apt/keyrings && \
   curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
@@ -47,7 +47,7 @@ RUN curl https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/downl
   aws-iam-authenticator help
 
 # Digital Ocean CLI (doctl)
-RUN DOCTL_VERSION=1.100.0 && \
+RUN DOCTL_VERSION=1.104.0 && \
   wget https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-amd64.tar.gz && \
   tar xf ./doctl-${DOCTL_VERSION}-linux-amd64.tar.gz && \
   mv ./doctl /usr/local/bin && \
