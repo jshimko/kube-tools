@@ -1,6 +1,6 @@
 # kube-tools
 
-A Docker image based on Debian 11 that comes with all the tools you need to work with Kubernetes, Helm charts, AWS (awscli), AWS EKS, and Digital Ocean Kubernetes. Intended to be a flexible foundation of tools for CI/CD workflows.
+A Docker image based on Debian 12 that comes with all the tools you need to work with Kubernetes, Helm charts, AWS (awscli), AWS EKS, and Digital Ocean Kubernetes. Intended to be a flexible foundation of tools for CI/CD workflows.
 
 ## Included Tools
 
