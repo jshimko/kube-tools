@@ -9,8 +9,7 @@ A Docker image based on Debian 12 that comes with all the tools you need to work
 - Helm S3 plugin - <https://github.com/hypnoglow/helm-s3>
 - Docker - <https://docs.docker.com/engine/install/debian/#install-using-the-repository>
 - awscli - <https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html>
-- aws-iam-authenticator - <https://github.com/kubernetes-sigs/aws-iam-authenticator>
 - doctl - <https://docs.digitalocean.com/reference/doctl/>
-- psql - <https://www.postgresql.org/docs/14/app-psql.html>
+- psql - <https://www.postgresql.org/docs/17/app-psql.html>
 - yamllint - <https://github.com/adrienverge/yamllint>
 - yq (YAML parser based on `jq`) - <https://github.com/kislyuk/yq>
