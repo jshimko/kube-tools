@@ -15,12 +15,12 @@ RUN apt update && \
     tee /etc/apt/sources.list.d/docker.list > /dev/null && \
   apt-get update && \
   apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && \
-  # postgresql-client-16
+  # https://www.postgresql.org/download/linux/debian/
   install -d /usr/share/postgresql-common/pgdg && \
   curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc && \
   echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt bookworm-pgdg main" \
     > /etc/apt/sources.list.d/pgdg.list && \
-  apt update && apt install -y --no-install-recommends postgresql-client-16 && \
+  apt update && apt install -y --no-install-recommends postgresql-client-17 && \
   rm -rf /var/lib/apt/lists/*
 
 # misc tools
