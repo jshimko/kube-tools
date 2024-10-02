@@ -39,13 +39,6 @@ RUN curl -fsSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-he
 # helm S3 plugin
 RUN helm plugin install https://github.com/hypnoglow/helm-s3.git
 
-# aws-iam-authenticator
-# https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
-RUN curl https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v0.5.9/aws-iam-authenticator_0.5.9_linux_amd64 -Lo aws-iam-authenticator && \
-  chmod +x ./aws-iam-authenticator && \
-  mv aws-iam-authenticator /usr/local/bin/aws-iam-authenticator && \
-  aws-iam-authenticator help
-
 # Digital Ocean CLI (doctl)
 RUN DOCTL_VERSION=1.104.0 && \
   wget https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-amd64.tar.gz && \
