@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update && \
   apt upgrade -y && \
   apt install -y --no-install-recommends \
-    curl ca-certificates git gnupg2 python3 pipx rclone vim wget && \
+    curl ca-certificates git gnupg2 python3 pipx unzip vim wget && \
   # Docker
   install -m 0755 -d /etc/apt/keyrings && \
   curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
@@ -21,6 +21,8 @@ RUN apt update && \
   echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt bookworm-pgdg main" \
     > /etc/apt/sources.list.d/pgdg.list && \
   apt update && apt install -y --no-install-recommends postgresql-client-17 && \
+  # rclone
+  curl https://rclone.org/install.sh | bash && \
   rm -rf /var/lib/apt/lists/*
 
 # misc tools
