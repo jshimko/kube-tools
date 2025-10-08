@@ -13,3 +13,4 @@ A Docker image based on Debian 12 that comes with all the tools you need to work
 - psql - <https://www.postgresql.org/docs/17/app-psql.html>
 - yamllint - <https://github.com/adrienverge/yamllint>
 - yq (YAML parser based on `jq`) - <https://github.com/kislyuk/yq>
+- rclone - <https://rclone.org/>
