@@ -47,7 +47,7 @@ RUN curl -fsSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-he
 RUN helm plugin install https://github.com/hypnoglow/helm-s3.git
 
 # Digital Ocean CLI (doctl)
-RUN DOCTL_VERSION=1.145.0 && \
+RUN DOCTL_VERSION=$(curl -s https://api.github.com/repos/digitalocean/doctl/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/') && \
   wget https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-${BUILD_ARCH}.tar.gz && \
   tar xf ./doctl-${DOCTL_VERSION}-linux-${BUILD_ARCH}.tar.gz && \
   mv ./doctl /usr/local/bin && \
