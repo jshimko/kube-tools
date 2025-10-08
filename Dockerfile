@@ -2,9 +2,6 @@ FROM debian:12-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# install the correct binaries for the build architecture
-ARG BUILD_ARCH=amd64
-
 RUN apt update && \
   apt upgrade -y && \
   apt install -y --no-install-recommends \
@@ -31,6 +28,11 @@ RUN apt update && \
 # misc tools
 RUN pipx install awscli
 RUN pipx install yamllint
+
+# install the correct binaries for the build architecture
+# (TARGETARCH should be set by Docker buildx automatically, but it falls back to amd64 if not set)
+ARG TARGETARCH
+ARG BUILD_ARCH=${TARGETARCH:-amd64}
 
 # kubectl
 RUN curl -LO "https://dl.k8s.io/release/$(curl -Ls https://dl.k8s.io/release/stable.txt)/bin/linux/${BUILD_ARCH}/kubectl" && \
